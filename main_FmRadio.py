@@ -13,8 +13,8 @@ def get_days_from_today(date):
 def start_main_program():
     try:
 
-        input_time=dt(year=2024, month=1, day=6)
-        #input_time = dt(year=int(input("Year= ")), month=int(input("Month= ")), day=int(input("Day= ")))
+        #input_time=dt(year=2024, month=1, day=6)
+        input_time = dt(year=int(input("Year= ")), month=int(input("Month= ")), day=int(input("Day= ")))
         get_days_from_today(input_time)
         
 
