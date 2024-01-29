@@ -4,6 +4,8 @@ import os
 def get_days_from_today(date):
     date= dt.date(date)                                 #Після отримання данних ми беремо тільки дату
     today=dt.date(dt.today())                           #Беремо теперешню дату та тільки дату(без часу) через .date()
+    print(type(date))
+    print(type(today))
     print(f'Дата яку ми ввели:\n{date}\n')
     print(f'Поточна дата:\n{today}\n')
     print(f'Різниця по дням: \n{(today-date).days}')

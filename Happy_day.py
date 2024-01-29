@@ -1,35 +1,24 @@
 import os 
 from datetime import datetime as dtdt
 
-
-
-def get_upcoming_birthdays(users):
-    tdate=dtdt.today().date()
-    tdate.toordinal()
-    birthday=[]
-    for user in users:
-        bdate=user["birthday"]
-        bdate=str(tdate.year)+bdate[4:]
-        bdate=dtdt.strptime(bdate,"%Y.%m.%d").date()
-        week_day=bdate.isoweekday()
-        bdo=bdate.toordinal()
-        days_between=bdo-tdate.toordinal()
-        if 0<=days_between<7:
-            if week_day<6:
-                birthday.append({'name':user['name'],'birthday':dtdt.isoformat().replace('-','.')})
-            elif dtdt.fromordinal(bdo+1).weekday()==0:
-                birthday.append({'name':user['name'],'birthday':dtdt.fromordinal(bdo+1).isoformat().replace('-','.')[:10]})
-            elif dtdt.fromordinal(bdo+2).weekday()==0:
-                birthday.append({'name':user['name'],'birthday':dtdt.fromordinal(bdo+2).isoformat().replace('-','.')[:10]})
-
-    return birthday
-
-
 users = [
     {"name": "John Doe", "birthday": "1985.01.23"},
-    {"name": "Jane Smith", "birthday": "1990.01.28"},
- 
+    {"name": "Jane Smith", "birthday": "1990.01.28"}, 
 ]
+
+def get_upcoming_birthdays():
+
+    happy_day=[]
+    for user in users: 
+        day_birthday=dtdt.strptime(user['birthday'],'%Y.%m.%d').date()
+        day_now=(dtdt.now()).date()
+        day_happy=dtdt(day_now.year, day_birthday.month, day_birthday.day).date()
+        if(day_happy-day_now).days < 0:
+            day_happy=dtdt(day_now.year+1, day_birthday.month, day_birthday.day).date()
+
+    print(day_birthday)
+    print(day_now)
+
 os.system('cls')
-upcoming_birthdays = get_upcoming_birthdays(users)
+upcoming_birthdays = get_upcoming_birthdays()
 print("Список привітань на цьому тижні:", upcoming_birthdays)

@@ -4,19 +4,23 @@ import random
 def get_numbers_ticket(min, max, quantity):
 
     i=0
+    random_ticket_list=list(range(min,max))
     ticket_list=list()                                          #Створили пустий список
+    random.shuffle(random_ticket_list)
     if (max+1-min)<quantity:                                    #Якщо діапазон нижче ніж кількість чисел \
             ticket_list=None                                        #які потрібно вибрати (значення між min і max)
             print(f'Ви вийшли за діапазон {quantity}')
             return ticket_list                                  #Повертаємо  None
     try:
-        for i in range(quantity):                               #Цикл скільки нам потрібно даних
-            ticket_list.append(random.randrange(min,max+1))     #Генерація рандмоного числа
-            ticket_list.sort()                                  #Сортируємо список по зростанню
+
+        while i != quantity:                             #Цикл скільки нам потрібно даних
+            ticket_list.append(random_ticket_list[i])           #Генерація рандмоного числа
+            i=i+1
         
     except Exception as eror:
         print(f"Error: {eror}")
         start_main_program()
+    ticket_list.sort()                                      #Сортируємо список по зростанню
     return ticket_list                                          #Виводимо список лотерельного квітка 
 
 
