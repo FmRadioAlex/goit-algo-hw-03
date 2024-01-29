@@ -21,7 +21,7 @@ def get_upcoming_birthdays():
                 day_happy=day_happy+datetime.timedelta(days=1)
             elif(day_happy-day_now).days == 5:
                 day_happy=day_happy+datetime.timedelta(days=2)
-            list_congra={'name':user['name'], 'congratulate you on your birthday':dtdt.strftime(day_happy,'%Y.%m.%d')}
+            list_congra={'Ім`я':user['name'], 'Коли треба привітати його':dtdt.strftime(day_happy,'%Y.%m.%d')}
             happy_day.append(list_congra)
     return happy_day
 
