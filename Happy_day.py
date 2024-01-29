@@ -1,9 +1,10 @@
 import os 
 from datetime import datetime as dtdt
+import datetime
 
 users = [
     {"name": "John Doe", "birthday": "1985.01.23"},
-    {"name": "Jane Smith", "birthday": "1990.01.28"}, 
+    {"name": "Jane Smith", "birthday": "1990.01.30"}, 
 ]
 
 def get_upcoming_birthdays():
@@ -15,9 +16,14 @@ def get_upcoming_birthdays():
         day_happy=dtdt(day_now.year, day_birthday.month, day_birthday.day).date()
         if(day_happy-day_now).days < 0:
             day_happy=dtdt(day_now.year+1, day_birthday.month, day_birthday.day).date()
-
-    print(day_birthday)
-    print(day_now)
+        elif(day_happy - day_now).days < 7:
+            if(day_happy-day_now).days == 6:
+                day_happy=day_happy+datetime.timedelta(days=1)
+            elif(day_happy-day_now).days == 5:
+                day_happy=day_happy+datetime.timedelta(days=2)
+            list_congra={'name':user['name'], 'congratulate you on your birthday':dtdt.strftime(day_happy,'%Y.%m.%d')}
+            happy_day.append(list_congra)
+    return happy_day
 
 os.system('cls')
 upcoming_birthdays = get_upcoming_birthdays()
